@@ -1,0 +1,93 @@
+<div class="container pb-5">
+  <div class="d-flex flex-row justify-content-between">
+    <h1 class="display-6 my-3">Latest Posts</h1>
+    <h4 class="display-6 my-3">{{getDate()}}</h4>
+  </div>
+  <div class="d-flex flex-row">
+    <button id="refreshButton" class="btn btn-success mx-1" title="Refresh post list" (click)="refreshPosts($event)">
+      <mat-icon>refresh</mat-icon> Refresh posts
+    </button>
+  </div>
+  <div class="accordion my-4" id="accordionDepartmentLatest-{{i}}"
+    *ngFor="let department of departments; let i = index">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="{{'heading-'+i}}">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse-'+i"
+          aria-expanded="true" [attr.aria-controls]="'#collapse-'+i">
+          {{department | titlecase}}
+        </button>
+      </h2>
+      <div id="{{'collapse-' + i}}" class="accordion-collapse collapse show" [attr.aria-labelledby]="'heading-'+i"
+        [attr.data-bs-parent]="'#accordionDepartmentLatest-'+i">
+        <div class="accordion-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover m-0">
+              <tbody>
+                <tr
+                  *ngFor="let departmentPost of getDepartmentPosts(department, departmentCurrentPage.get(department) || 1)"
+                  class="position-relative" style="transform: rotate(0);">
+                  <td class="col-2">{{departmentPost.title | titlecase}}</td>
+                  <td class="col-5" [innerHtml]="getCleanExcerpt(departmentPost.text)"></td>
+                  <td class="col-2">
+                    <p class="blockquote-footer my-0"><small>{{departmentPost.username.split("@")[0]}}
+                        <br />{{getDate(departmentPost.timestamp)}}</small></p>
+                  </td>
+                  <td class="col">
+                    <a [routerLink]="['/post/'+departmentPost.id]" class=" mx-3 stretched-link">
+                      View
+                    </a>
+                    <span style="position:relative; z-index:2">
+                      <a [routerLink]="['/post/edit/'+departmentPost.id]" class="btn btn-primary mx-1"
+                        placement="bottom" ngbTooltip="Edit post">
+                        <mat-icon>edit</mat-icon>
+                      </a>
+                      <button (click)="onDelete(departmentPost.id!)" class="btn btn-danger mx-1"
+                        placement="bottom" ngbTooltip="Delete post">
+                        <mat-icon>delete_forever</mat-icon>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+                <tr class="h-100"
+                  [class.d-none]="departmentPages.get(department) !== departmentCurrentPage.get(department)"></tr>
+                  <!-- <p>Pages: {{departmentPages.get(department)}}</p>
+                  <p>Current: {{departmentCurrentPage.get(department)}}</p> -->
+
+                <tr *ngIf="departmentPages.get(department)! > 1" class="">
+                  <td colspan="12">
+                    <nav aria-label="...">
+                      <ul class="pagination justify-content-center my-0">
+                        <li class="page-item" [class.active]="departmentCurrentPage.get(department) === pageNum+1"
+                          [attr.aria-current]="pageNum+1==departmentCurrentPage.get(department) ? 'page' : null"
+                          *ngFor="let page of [].constructor(departmentPages.get(department)), let pageNum = index">
+                          <a [attr.href]="departmentCurrentPage.get(department) === pageNum+1 ? null : '#'"
+                            class="page-link" (click)="changeDepartmentPage(department,pageNum+1)">{{pageNum+1}}</a>
+                          <!-- <p>Current page: {{getDepartmentCurrentPage(department)}}</p> -->
+                        </li>
+                      </ul>
+                    </nav>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirm delete</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+      (click)="modal.dismiss('Close')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this post?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ngbAutofocus
+      (click)="modal.close('Cancel')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Confirm')">Confirm delete</button>
+  </div>
+</ng-template>

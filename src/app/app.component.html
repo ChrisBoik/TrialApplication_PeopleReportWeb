@@ -1,0 +1,58 @@
+<main>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="['/']">
+          <img src="../assets/logos/1200px-Coat_of_arms_of_South_Africa.svg.png" alt="" width="27" height="33"
+            class="d-inline-block align-text-top">
+          <span class="ms-4">Department Bulletin Board</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="authService.isLoggedIn()">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">
+                <mat-icon>forum</mat-icon> View posts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['post/create']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">
+                <mat-icon>add_comment</mat-icon> Create post
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="authService.isLoggedIn(); else loggedOut">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/users']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">
+                <mat-icon>settings</mat-icon> Manage Users
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logout()">
+                <mat-icon>logout</mat-icon> Log Out
+              </a>
+            </li>
+          </ul>
+          <ng-template #loggedOut>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item" *ngIf="isLogin()">
+                <a class="nav-link" [routerLink]="['/register']" routerLinkActive="router-link-active">
+                  <mat-icon>person_add</mat-icon> Register
+                </a>
+              </li>
+              <li class="nav-item" *ngIf="!isLogin()">
+                <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">
+                  <mat-icon>login</mat-icon> Log In
+                </a>
+              </li>
+            </ul>
+          </ng-template>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <router-outlet></router-outlet>
+</main>

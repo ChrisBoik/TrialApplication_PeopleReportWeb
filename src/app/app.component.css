@@ -1,0 +1,7 @@
+main{
+  height: calc(100% - 60px);
+}
+
+.navbar-dark .navbar-nav .nav-link.router-link-active {
+  color: rgb(221,193,79);
+}

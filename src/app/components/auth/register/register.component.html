@@ -1,0 +1,48 @@
+<div id="loginBackground" class="container-fluid bg-secondary h-100">
+  <div class="container d-flex flex-column h-100 justify-content-center align-items-center">
+    <h1 class="display-4 text-center text-white">Welcome <b>new</b> member!</h1>
+    <div class="card" style="min-width: 50vw;">
+      <div class="card-body">
+        <h5 class="card-title">Secure registration</h5>
+        <div class="container">
+          <form name="login justify-content-center align-items-center" #registerForm="ngForm"
+            (submit)="onRegister(registerForm)" [ngClass]="(registerForm.invalid && submitted) ? 'was-validated' : ''">
+            <div class=" mb-3">
+              <label for="usernameInput" class="form-label">Email address</label>
+              <input id="usernameInput" class="form-control" type="text" ngModel name="email"
+                placeholder="example@gov.za" required minlength="5" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                #email="ngModel" aria-describedby="emailHelp" autocomplete="email">
+              <div class="invalid-feedback">
+                {{emailError}}
+              </div>
+              <div id="emailHelp" class="form-text">Please use your department allocated email address, usually ending
+                in
+                ".gov.za"</div>
+            </div>
+            <hr>
+            <div class="mb-3">
+              <label for="passwordInput" class="form-label">Password</label>
+              <input id="passwordInput" type="password" class="form-control" pattern="^([a-zA-Z0-9@*#]{8,15})$" ngModel
+                name="password" placeholder="Password" required #password="ngModel" aria-describedby="passwordHelp" autocomplete="new-password">
+              <div class="invalid-feedback">
+                {{passwordError}}
+              </div>
+              <div id="passwordHelp" class="form-text">Permitted characters: 0-9, a-z, A-Z, @, *, #</div>
+            </div>
+            <div class="mb-3">
+              <label for="passwordInputConfirm" class="form-label">Confirm Password</label>
+              <input id="passwordInputConfirm" type="password" class="form-control" ngModel name="passwordConfirm"
+                placeholder="Repeat password" required #password="ngModel" aria-describedby="passwordConfirmHelp"
+                [ngClass]="(registerForm.value.password == registerForm.value.passwordConfirm) ? '' : 'is-invalid'" autocomplete="new-password">
+              <div class="invalid-feedback">
+                {{passwordConfirmError}}
+              </div>
+              <div id="passwordConfirmHelp" class="form-text">Same password as above</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
