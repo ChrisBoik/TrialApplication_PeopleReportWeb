@@ -1,0 +1,81 @@
+<div class="container pb-5">
+  <div class="d-flex flex-row justify-content-center">
+    <h6 class="display-6 my-3 text-muted">Edit Person</h6>
+  </div>
+  <div class="container col-md-10">
+    <form (submit)="onSaveEdits(person)" #person="ngForm"
+      [ngClass]="(person.invalid && submitted) ? 'was-validated' : ''">
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="first_name" class="form-label"><em>First Name</em></label>
+          <input type="text" class="form-control" id="first_name" aria-describedby="name_help" maxlength="40"
+            minlength="3" required placeholder="Ex. James" ngModel name="first_name" #first_name="ngModel">
+          <div id="name_help" class="form-text">enter the person's first name</div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="last_name" class="form-label"><em>Last Name</em></label>
+          <input type="text" class="form-control" id="last_name" aria-describedby="last_name_help" maxlength="40"
+            minlength="3" required placeholder="Ex. Kerr" ngModel name="last_name" #last_name="ngModel">
+          <div id="last_name_help" class="form-text">the person's last name</div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for="date_of_birth" class="form-label"><em>Date of Birth</em></label>
+          <input type="date" class="form-control" id="date_of_birth" aria-describedby="date_of_birth_help"
+            maxlength="40" min="01-01-1900" required placeholder="Ex. 22/02/2000" ngModel name="date_of_birth"
+            #date_of_birth="ngModel">
+          <div id="date_of_birth_help" class="form-text">and their date of birth</div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="person_id" class="form-label"><em>Person Id</em></label>
+          <input type="text" class="form-control" id="first_name" aria-describedby="person_id_help" readonly ngModel
+            name="person_id" #person_id="ngModel">
+          <div id="person_id_help" class="form-text">The person's Id</div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <button type="button" class="btn btn-primary btn-lg" type="submit">Save details</button>
+        </div>
+        <button type="button" class="btn btn-danger btn-lg" (click)="onDelete(person)">Delete person</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<!-- Delete Modal -->
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirm delete</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+      (click)="modal.dismiss('Close')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this person?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ngbAutofocus
+      (click)="modal.close('Cancel')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Confirm')">Confirm delete</button>
+  </div>
+</ng-template>
