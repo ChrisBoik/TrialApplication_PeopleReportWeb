@@ -38,6 +38,10 @@ jspm_packages/
 
 # Dist
 dist/
+.firebase/
+.vscode/
+
+
 
 # TypeScript v1 declaration files
 typings/
