@@ -1,0 +1,38 @@
+<div class="container pb-5">
+  <!-- Heading -->
+  <div class="d-flex flex-row justify-content-between">
+    <h1 class="display-6 my-3">List of People</h1>
+    <!-- <h4 class="display-6 my-3">SUB TITLE</h4> -->
+  </div>
+
+  <!-- Action Row Button -->
+  <div class="d-flex flex-row justify-content-between">
+    <button id="refreshButton" class="btn btn-primary mx-1" title="Refresh list" (click)="refreshPosts($event)">
+      <span class="material-icons">
+        refresh
+      </span>
+      Refresh list
+    </button>
+    <a [routerLink]="['/person/new']" id="refreshButton" class="btn btn-success mx-1" title="Add new person" (click)="refreshPosts($event)">
+      <span class="material-icons">
+        add
+      </span>
+      Add
+    </a>
+  </div>
+
+  <!-- List of People Section -->
+  <ul class="list-group my-4">
+    <li class="list-group-item list-group-item-action" *ngFor="let person of people; let i = index">
+      <a [routerLink]="['/person/edit',person.Id]" class="d-flex justify-content-between align-items-start text-decoration-none">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{person.First_Name}}{{person.Last_Name ? " ".concat(person.Last_Name) : ""}}</div>
+          Age: {{person.Age}}
+        </div>
+        <span class="text-muted">Birthday:
+          <span class="text-reset">{{person.Date_of_Birth | date:"EEEE, dd MMMM YYYY"}}</span>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
