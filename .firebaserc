@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "aqueous-centaur-252516"
+  },
+  "targets": {
+    "aqueous-centaur-252516": {
+      "hosting": {
+        "dgcapp": [
+          "dgcapp"
+        ]
+      }
+    }
+  }
+}
