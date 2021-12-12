@@ -1,0 +1,47 @@
+<div class="container pb-5">
+  <div class="d-flex flex-row justify-content-center">
+    <h6 class="display-6 my-3 text-muted">Add New Person</h6>
+  </div>
+  <div class="container col-md-10">
+    <form (submit)="onCreatePerson(person)" #person="ngForm"
+      [ngClass]="(person.invalid && submitted) ? 'was-validated' : ''">
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="first_name" class="form-label"><em>First Name</em></label>
+          <input type="text" class="form-control" id="first_name" aria-describedby="name_help" maxlength="40"
+            minlength="3" required placeholder="Ex. James" ngModel name="first_name" #first_name="ngModel">
+          <div id="name_help" class="form-text">enter the person's first name</div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="last_name" class="form-label"><em>Last Name</em></label>
+          <input type="text" class="form-control" id="last_name" aria-describedby="last_name_help" maxlength="40"
+            minlength="3" required placeholder="Ex. Kerr" ngModel name="last_name" #last_name="ngModel">
+          <div id="last_name_help" class="form-text">the person's last name</div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for="date_of_birth" class="form-label"><em>Date of Birth</em></label>
+          <input type="date" class="form-control" id="date_of_birth" aria-describedby="date_of_birth_help"
+            maxlength="40" min="01-01-1900" required placeholder="Ex. 22/02/2000" ngModel name="date_of_birth"
+            #date_of_birth="ngModel">
+          <div id="date_of_birth_help" class="form-text">and their date of birth</div>
+        </div>
+      </div>
+
+      <br />
+
+      <button type="button" class="btn btn-success btn-lg" type="submit">Add Person</button>
+    </form>
+  </div>
+
+</div>
