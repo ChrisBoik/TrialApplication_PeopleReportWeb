@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  public title = "DGCAPP";
   constructor(public router: Router) { }
   ngOnInit() {
   }

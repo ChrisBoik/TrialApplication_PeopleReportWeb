@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "dgcapp",
     "public": "dist/dgc-app",
     "ignore": [
       "firebase.json",
