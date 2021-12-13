@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
 })
 export class PeopleService {
 
-  private API_Endpoint = "https://trialapplicationpeoplereport20211212153111.azurewebsites.net";
+  // private API_Endpoint = "https://trialapplicationpeoplereport20211212153111.azurewebsites.net";
+  private API_Endpoint = "/api";
 
   private people: Person[] = [];
   private numBirthdaysInMonths: { Month: number, Num_Month_Birthdays: number }[] = [];
@@ -132,9 +133,7 @@ export class PeopleService {
   * @return  {Person}              Returns the requested person object.
   */
   async getPerson(id: number): Promise<Person> {
-    return this.people.find(p => p.Id === id) ?? await this.fetchPerson(id).then(p => {
-      return p.person;
-    });
+    return this.people.find(p => p.Id === id) ?? (await this.fetchPerson(id));
   }
 
 
@@ -147,8 +146,8 @@ export class PeopleService {
   *
   * @return  {Promise<Promise>}    Returns the requested person object.
   */
-  fetchPerson(id: number): Promise<{ person: Person }> {
-    return this.http.get<{ person: Person }>(`${this.API_Endpoint}/person/${id}`).toPromise();
+  fetchPerson(id: number): Promise<Person> {
+    return this.http.get< Person >(`${this.API_Endpoint}/person/${id}`).toPromise();
   }
 
 
