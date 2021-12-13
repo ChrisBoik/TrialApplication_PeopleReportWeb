@@ -17,6 +17,7 @@ export class PeopleListComponent implements OnInit, OnDestroy {
   private peopleSubscription!: Subscription;
 
   ngOnInit() {
+    // Fetch people initially and then listen for people updates via subscription
     this.getPeople();
     this.peopleSubscription = this.peopleService.getPeopleUpdateListener().subscribe((people: Person[]) => {
       this.people = people;
@@ -24,19 +25,17 @@ export class PeopleListComponent implements OnInit, OnDestroy {
 
   }
 
+  // Clean up subscriptions
   ngOnDestroy(): void {
     this.peopleSubscription.unsubscribe();
   }
 
+  // Fetch people via the people service
   getPeople() {
     this.people = this.peopleService.getPeople();
   }
 
-  // getDate(timestamp?: string): string {
-  //   const date = timestamp ? new Date(timestamp) : new Date();
-  //   return timestamp ? date.toLocaleString() : date.toDateString();
-  // }
-
+  // Show the refreshing status and re-fetch the latest people list
   refreshPosts(button: Event) {
     this.getPeople();
     (button.target as HTMLButtonElement).classList.add("loading");

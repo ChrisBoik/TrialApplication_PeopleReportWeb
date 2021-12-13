@@ -1,8 +1,7 @@
 <div class="container pb-5">
   <!-- Heading -->
   <div class="d-flex flex-row justify-content-between">
-    <h1 class="display-6 my-3">List of People</h1>
-    <!-- <h4 class="display-6 my-3">SUB TITLE</h4> -->
+    <h1 class="display-6 my-3">Birthday Report</h1>
   </div>
 
   <table class="table">
@@ -13,6 +12,7 @@
       </tr>
     </thead>
     <tbody>
+      <!-- For each month, show the month name and the number of birthdays in that month -->
       <tr *ngFor="let month of monthNames; let i = index">
         <th scope="row">{{month}}</th>
         <td>{{numBirthdaysInMonths[i]}}</td>

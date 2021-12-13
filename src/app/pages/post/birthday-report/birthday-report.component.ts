@@ -16,11 +16,12 @@ export class BirthdayReportComponent implements OnInit {
   public numBirthdaysInMonths: number[] = [];
 
   async ngOnInit() {
+
+    // Fetch the number of birthdays in each month
     this.peopleService.getNumberBirthdaysInMonths().subscribe((numBirthdays) => {
       this.monthNames.forEach((_month, index) => {
-        this.numBirthdaysInMonths.push(numBirthdays.find(({ Month }) => Month === (index+1))?.Num_Month_Birthdays ?? 0)
+        this.numBirthdaysInMonths.push(numBirthdays.find(({ Month }) => Month === (index + 1))?.Num_Month_Birthdays ?? 0)
       });
     });
   }
-
 }

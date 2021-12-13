@@ -4,6 +4,7 @@ export class Person {
     Last_Name: string;
     Date_of_Birth: string;
 
+    // Getter for the Age property
     private _age: number = -1;
     get Age(): number {
         const currentDate = new Date();

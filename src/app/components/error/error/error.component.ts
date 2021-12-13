@@ -12,6 +12,7 @@ export class ErrorComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string }, private modalService: NgbModal) { }
   @ViewChild('unknwonErrorModal', { static: true }) deleteModal!: ElementRef;
 
+  // Show the modal on initiation
   ngOnInit() {
     this.modalService.open(this.deleteModal, { ariaLabelledBy: 'modal-basic-title', centered: true });
   }

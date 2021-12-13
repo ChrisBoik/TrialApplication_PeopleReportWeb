@@ -42,10 +42,12 @@ export class EditPersonComponent implements OnInit {
   }
 
   onSaveEdits(PersonForm: NgForm): void {
+    // Store submitted status to show validation
     this.submitted = true;
     if (PersonForm.invalid) {
       return;
     }
+
     const person: Person = new Person({
       Id: this.viewingPerson?.Id ?? PersonForm.value.person_id,
       First_Name: PersonForm.value.first_name,
@@ -53,7 +55,7 @@ export class EditPersonComponent implements OnInit {
       Date_of_Birth: PersonForm.value.date_of_birth,
     });
 
-    //Redirect to people list
+    //Redirect to people list after updating
     this.peopleService.updatePerson(person).then(updatedPersonId => this.router.navigate([`/`])).catch(err => console.error("Error updating person, try again."));
   }
 

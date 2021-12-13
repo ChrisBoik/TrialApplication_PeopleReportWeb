@@ -22,10 +22,15 @@ export class CreatePersonComponent implements OnInit {
   // orderError = "Order error"
 
   onCreatePerson(PostForm: NgForm): void {
+    
+    // Store the submitted status to show validation
     this.submitted = true;
+
+    // Don't save the person if the form is invalid
     if (PostForm.invalid) {
       return;
     }
+    
     const person: Person = new Person({
       Id: null,
       First_Name: PostForm.value.first_name,
@@ -33,7 +38,7 @@ export class CreatePersonComponent implements OnInit {
       Date_of_Birth: PostForm.value.date_of_birth,
     });
 
-    // Redirect to people list
+    // Redirect to people list after saving
     this.peopleService.addPerson(person).then(newPostId => this.router.navigate([`/`])).catch(err => console.error("Error creating person, try again."));
   }
 

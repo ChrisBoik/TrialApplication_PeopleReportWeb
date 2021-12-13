@@ -3,13 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-// import { OrderCreateComponent } from "./components/order/order-create/order-create.component"
 
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './router/app-routing.routings';
 
-//NgBootstrap dependency for toolsets
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -19,8 +17,6 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { CommonModule } from '@angular/common';
 import { PeopleListComponent } from './pages/post/list-people/people-list.component';
 import { BirthdayReportComponent } from './pages/post/birthday-report/birthday-report.component';
-
-
 
 
 @NgModule({
