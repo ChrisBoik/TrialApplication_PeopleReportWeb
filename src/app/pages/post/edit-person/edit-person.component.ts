@@ -22,7 +22,7 @@ export class EditPersonComponent implements OnInit {
   viewingPerson: Person | undefined;
 
   ngOnInit(): void {
-    setTimeout(() => { this.getPerson(); }, 300);
+    this.getPerson();
   }
 
   getPerson(): void {
@@ -30,12 +30,14 @@ export class EditPersonComponent implements OnInit {
     if (id !== null) {
       this.peopleService.getPerson(Number.parseInt(id)).then(p => {
         this.viewingPerson = p;
-        this.personForm.form.setValue({
-          first_name: this.viewingPerson?.First_Name,
-          last_name: this.viewingPerson?.Last_Name,
-          date_of_birth: formatDate(this.viewingPerson?.Date_of_Birth, "yyyy-MM-dd", "En-ZA"),
-          person_id: this.viewingPerson?.Id
-        })
+        setTimeout(() => {
+          this.personForm.form.setValue({
+            first_name: this.viewingPerson?.First_Name,
+            last_name: this.viewingPerson?.Last_Name,
+            date_of_birth: formatDate(this.viewingPerson?.Date_of_Birth || "", "yyyy-MM-dd", "En-ZA"),
+            person_id: this.viewingPerson?.Id
+          })
+        }, 150);
       });
     }
 
