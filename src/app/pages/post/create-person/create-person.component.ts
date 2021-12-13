@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms"
 import { Person } from "src/app/models/person.model"
 import { Router } from '@angular/router';
 import { PeopleService } from 'src/app/services/people-service.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-order-create',
@@ -11,8 +12,11 @@ import { PeopleService } from 'src/app/services/people-service.service';
 })
 export class CreatePersonComponent implements OnInit {
 
-  constructor(public peopleService: PeopleService, public router: Router) { }
+  constructor(public peopleService: PeopleService, public router: Router) {
+    this.maximumDate = formatDate(new Date(), "yyyy-MM-dd", "En-ZA");
+  }
   submitted = false;
+  maximumDate: string;
 
   ngOnInit(): void {
   }
