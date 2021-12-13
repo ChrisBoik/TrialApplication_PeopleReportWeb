@@ -10,7 +10,10 @@
         <div class="col-md-6">
           <label for="first_name" class="form-label"><em>First Name</em></label>
           <input type="text" class="form-control" id="first_name" aria-describedby="name_help" maxlength="40"
-            minlength="3" required placeholder="Ex. James" ngModel name="first_name" #first_name="ngModel">
+            minlength="3" required placeholder="James" ngModel name="first_name" #first_name="ngModel">
+            <div class="invalid-feedback">
+              Enter a first name between 3 and 40 alphabetic characters
+            </div>
           <div id="name_help" class="form-text">enter the person's first name</div>
         </div>
       </div>
@@ -21,7 +24,10 @@
         <div class="col-md-6">
           <label for="last_name" class="form-label"><em>Last Name</em></label>
           <input type="text" class="form-control" id="last_name" aria-describedby="last_name_help" maxlength="40"
-            minlength="3" required placeholder="Ex. Kerr" ngModel name="last_name" #last_name="ngModel">
+            minlength="3" required placeholder="Kerr" ngModel name="last_name" #last_name="ngModel">
+            <div class="invalid-feedback">
+              Enter a last name between 3 and 40 alphabetic characters
+            </div>
           <div id="last_name_help" class="form-text">the person's last name</div>
         </div>
       </div>
@@ -32,8 +38,11 @@
         <div class="col-md-4">
           <label for="date_of_birth" class="form-label"><em>Date of Birth</em></label>
           <input type="date" class="form-control" id="date_of_birth" aria-describedby="date_of_birth_help"
-            maxlength="40" min="01-01-1900" required placeholder="Ex. 22/02/2000" ngModel name="date_of_birth"
+            maxlength="40" min="1900-01-01" [max]="maximumDate" required placeholder="Ex. 22/02/2000" ngModel name="date_of_birth"
             #date_of_birth="ngModel">
+            <div class="invalid-feedback">
+              Please provide a valid date of birth
+            </div>
           <div id="date_of_birth_help" class="form-text">and their date of birth</div>
         </div>
       </div>
