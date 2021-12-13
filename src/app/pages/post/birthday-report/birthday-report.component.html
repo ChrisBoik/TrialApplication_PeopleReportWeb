@@ -15,7 +15,11 @@
       <!-- For each month, show the month name and the number of birthdays in that month -->
       <tr *ngFor="let month of monthNames; let i = index">
         <th scope="row">{{month}}</th>
-        <td>{{numBirthdaysInMonths[i]}}</td>
+        <td>{{numBirthdaysInMonths[i]}}
+          <div *ngIf="numBirthdaysInMonths[i] == null" class="spinner-grow spinner-grow-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
