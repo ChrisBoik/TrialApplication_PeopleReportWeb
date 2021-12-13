@@ -9,8 +9,8 @@ import { map } from 'rxjs/operators';
 })
 export class PeopleService {
 
-  // private API_Endpoint = "https://trialapplicationpeoplereport20211212153111.azurewebsites.net";
-  private API_Endpoint = "/api";
+  private API_Endpoint = "https://trialapplicationpeoplereport20211212153111.azurewebsites.net";
+  // private API_Endpoint = "/api";
 
   private people: Person[] = [];
   private numBirthdaysInMonths: { Month: number, Num_Month_Birthdays: number }[] = [];
