@@ -12,6 +12,7 @@ import { PeopleService } from "src/app/services/people-service.service"
 export class PeopleListComponent implements OnInit, OnDestroy {
 
   people: Person[] = [];
+  peopleLoaded = false;
 
   constructor(public peopleService: PeopleService) { }
   private peopleSubscription!: Subscription;
@@ -21,6 +22,7 @@ export class PeopleListComponent implements OnInit, OnDestroy {
     this.getPeople();
     this.peopleSubscription = this.peopleService.getPeopleUpdateListener().subscribe((people: Person[]) => {
       this.people = people;
+      this.peopleLoaded = true;
     });
 
   }
@@ -37,6 +39,7 @@ export class PeopleListComponent implements OnInit, OnDestroy {
 
   // Show the refreshing status and re-fetch the latest people list
   refreshPosts(button: Event) {
+    this.peopleLoaded = false;
     this.getPeople();
     (button.target as HTMLButtonElement).classList.add("loading");
     setTimeout(() => {
